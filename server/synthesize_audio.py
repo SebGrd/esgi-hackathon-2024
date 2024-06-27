@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify, send_file
 
 app = Flask(__name__)
 
-@app.route('/synthesize', methods=['POST'])
+@app.route('/tts', methods=['POST'])
 def synthesize_audio():
     data = request.json
     if 'text' not in data:
@@ -23,3 +23,4 @@ def home():
     return "Bienvenue sur le Text-to-Speech de CalMedica !"
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
+   
