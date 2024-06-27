@@ -7,7 +7,7 @@ type Calls = Call[]
 
 export default function PhoneSheetCalls({ calls, setCall }: { calls: Calls, setCall: (call: Call) => void }) {
   return (
-    <ScrollArea className="h-48 rounded-md border mb-4">
+    <ScrollArea className="h-48 rounded-md border mb-8">
       <div className="p-4">
         <h4 className="mb-4 text-sm font-medium leading-none">Appels</h4>
         {calls.map((call) => (
@@ -20,11 +20,11 @@ export default function PhoneSheetCalls({ calls, setCall }: { calls: Calls, setC
                 {call.title}
               </div>
               <div>
-                <time className="text-xs text-gray-500">{call.date}</time>
+                <time className="text-[10px] text-gray-500">{call.date.toLocaleString()}</time>
               </div>
             </div>
             <div className="px-2">
-              <Separator className="my-2" />
+              <Separator className="my-1" />
             </div>
           </div>
         ))}

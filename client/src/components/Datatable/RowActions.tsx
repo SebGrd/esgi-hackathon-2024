@@ -1,7 +1,8 @@
+import { Conversation } from "../datatable-wip/columns";
 import * as Icon from "../ui/icons";
 import PhoneSheet from "./PhoneSheet";
 
-export default function RowActions() {
+export default function RowActions({ conversation }: { conversation: Conversation }) {
   return (
     <ul className="flex items-center gap-2">
       <li>
@@ -20,7 +21,7 @@ export default function RowActions() {
         <Icon.Chat />
       </li>
       <li>
-        <PhoneSheet />
+        <PhoneSheet calls={conversation.calls} />
       </li>
       <li>
         <Icon.Download />
