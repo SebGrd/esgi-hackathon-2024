@@ -4,7 +4,6 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import { ObjectId } from 'mongodb';
 import axios from 'axios';
-import bodyParser from 'body-parser';
 
 const app = express();
 const port = process.env.APP_PORT ?? 3000;
@@ -83,6 +82,8 @@ app.post('/send-voice-message', async (req, res) => {
       link: audioUrl
     }
   };
+  console.log(data)
+
 
   try {
     const response = await axios.post(url, data, {
