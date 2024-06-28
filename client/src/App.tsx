@@ -12,9 +12,12 @@ import { Conversation, columns } from "./components/datatable-wip/columns"
 import { DataTable } from "./components/datatable-wip/data-table"
 import { useEffect, useState } from "react";
 import useModel, { MODELS } from "./contexts/useApi";
+<<<<<<< HEAD
 import { DatePicker } from "./components/ui/datepicker";
 import { Input } from "./components/ui/input";
 import NotifierEmulator from "./components/Emulators/NotifierEmulator";
+=======
+>>>>>>> 02b0968 (Add untracked files before rebase)
 
 
 
@@ -50,7 +53,22 @@ function App() {
               <Button>Emuler</Button>
             </CardFooter>
           </Card>
+<<<<<<< HEAD
           <NotifierEmulator />
+=======
+          <Card>
+            <CardHeader>
+              <CardTitle>Emuler une notif. fixe</CardTitle>
+              <CardDescription>Simule un Text to Speech envoyé par appel téléphonique<br /> au patient de type "suivis fixe" (pas SMS)</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Data mock</p>
+            </CardContent>
+            <CardFooter>
+              <Button>Emuler</Button>
+            </CardFooter>
+          </Card>
+>>>>>>> 02b0968 (Add untracked files before rebase)
         </div>
 
         <DataTable columns={columns} data={data} />

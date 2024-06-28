@@ -41,7 +41,10 @@ export type Conversation = {
   "firstname": string,
   "birthdate": Date,
   "medic": string,
+<<<<<<< HEAD
   "newCall": boolean,
+=======
+>>>>>>> 02b0968 (Add untracked files before rebase)
   "sms": {
     "date": Date,
     "sender": SENDER,
