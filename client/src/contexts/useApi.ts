@@ -1,6 +1,7 @@
 import { Conversation } from "../components/datatable-wip/columns";
 
 export enum MODELS {
+<<<<<<< HEAD
   conversation = "conversation",
   emulators = "emulators"
 }
@@ -12,6 +13,11 @@ type PatchReturnObject = {
   upsertedCount: number,
   matchedCount: number
 }
+=======
+  conversation = "conversation"
+}
+
+>>>>>>> 02b0968 (Add untracked files before rebase)
 
 export default function useModel(model: MODELS) {
   const models = {
@@ -20,6 +26,7 @@ export default function useModel(model: MODELS) {
         const res = await fetch("http://localhost:3000/conversation");
         return await res.json() as Conversation[];
       },
+<<<<<<< HEAD
       update: async (id: string, data: Partial<Conversation>) => {
         const res = await fetch(`http://localhost:3000/conversation/${id}`, {
           method: "PATCH",
@@ -42,6 +49,8 @@ export default function useModel(model: MODELS) {
         });
         return await res.json();
       }
+=======
+>>>>>>> 02b0968 (Add untracked files before rebase)
     }
   }
   return models[model];

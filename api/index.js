@@ -3,10 +3,13 @@ import db from './db/connector.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { ObjectId } from 'mongodb';
+import axios from 'axios';
+import bodyParser from 'body-parser';
 
 const app = express();
 const port = process.env.APP_PORT ?? 3000;
 
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -63,8 +66,38 @@ app.post('/emulate-outbound-call', async (req, res) => {
   );
   res.json(result);
 });
+// Nouvelle route pour envoyer un message vocal via l'API WhatsApp
+app.post('/send-voice-message', async (req, res) => {
+  const { recipientPhoneNumber, audioUrl } = req.body;
 
+  const ACCESS_TOKEN = 'EAALa9J2mdwwBO8n4GswdAyyijzEAIqpiX2wk9UdifsiiO2BnkpMpP389iWcIleX8Coi0g0CaZCAFDqwOA0OoQSKI4K8yKjvIg0ZBEembT2HHqPbN7cbyvdTZAsj2di50LdJJXkPPdChJ95JUZAnAhFOuOfWU3ryI1cbH0B9LUaw4jz0kVAYuz76nvQKW3uhFg21dwlpDwt2PPNj2Ww7MCZAy8GefZCcBkG';
+  const PHONE_NUMBER_ID = '299765513230571';
 
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+  const url = `https://graph.facebook.com/v13.0/${PHONE_NUMBER_ID}/messages`;
+
+  const data = {
+    messaging_product: 'whatsapp',
+    to: recipientPhoneNumber,
+    type: 'audio',
+    audio: {
+      link: audioUrl
+    }
+  };
+
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    res.json({ message: 'Message sent', data: response.data });
+  } catch (error) {
+    res.json({ error: error.response ? error.response.data : error.message });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
