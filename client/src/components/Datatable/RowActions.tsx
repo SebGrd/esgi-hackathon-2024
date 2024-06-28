@@ -21,7 +21,11 @@ export default function RowActions({ conversation }: { conversation: Conversatio
         <Icon.Chat />
       </li>
       <li>
-        <PhoneSheet calls={conversation.calls ?? []}/>
+        <PhoneSheet
+          conversationId={conversation._id}
+          calls={conversation.calls ?? []}
+          isNotified={conversation.newCall}
+        />
       </li>
       <li>
         <Icon.Download />

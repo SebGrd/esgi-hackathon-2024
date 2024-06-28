@@ -41,6 +41,7 @@ export type Conversation = {
   "firstname": string,
   "birthdate": Date,
   "medic": string,
+  "newCall": boolean,
   "sms": {
     "date": Date,
     "sender": SENDER,

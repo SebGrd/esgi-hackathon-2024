@@ -12,6 +12,9 @@ import { Conversation, columns } from "./components/datatable-wip/columns"
 import { DataTable } from "./components/datatable-wip/data-table"
 import { useEffect, useState } from "react";
 import useModel, { MODELS } from "./contexts/useApi";
+import { DatePicker } from "./components/ui/datepicker";
+import { Input } from "./components/ui/input";
+import NotifierEmulator from "./components/Emulators/NotifierEmulator";
 
 
 
@@ -47,18 +50,7 @@ function App() {
               <Button>Emuler</Button>
             </CardFooter>
           </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Emuler une notif. fixe</CardTitle>
-              <CardDescription>Simule un Text to Speech envoyé par appel téléphonique<br /> au patient de type "suivis fixe" (pas SMS)</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Data mock</p>
-            </CardContent>
-            <CardFooter>
-              <Button>Emuler</Button>
-            </CardFooter>
-          </Card>
+          <NotifierEmulator />
         </div>
 
         <DataTable columns={columns} data={data} />
