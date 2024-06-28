@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "./components/ui/card"
 
-import { Conversation, STATE, STATUS, TYPE_SUIVIS, columns } from "./components/datatable-wip/columns"
+import { Conversation, columns } from "./components/datatable-wip/columns"
 import { DataTable } from "./components/datatable-wip/data-table"
 import { useEffect, useState } from "react";
 import useModel, { MODELS } from "./contexts/useApi";

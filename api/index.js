@@ -1,9 +1,12 @@
 import express from 'express';
 import db from './db/connector.js';
+import cors from 'cors';
 import { ObjectId } from 'mongodb';
 
 const app = express();
 const port = process.env.APP_PORT ?? 3000;
+
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
