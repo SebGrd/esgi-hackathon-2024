@@ -4,7 +4,6 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import { ObjectId } from 'mongodb';
 import axios from 'axios';
-import bodyParser from 'body-parser';
 
 const app = express();
 const port = process.env.APP_PORT ?? 3000;

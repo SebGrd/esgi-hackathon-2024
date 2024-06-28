@@ -11,29 +11,23 @@ import {
 import { Conversation, columns } from "./components/datatable-wip/columns"
 import { DataTable } from "./components/datatable-wip/data-table"
 import { useEffect, useState } from "react";
-import useModel, { MODELS } from "./contexts/useApi";
-<<<<<<< HEAD
-import { DatePicker } from "./components/ui/datepicker";
-import { Input } from "./components/ui/input";
+import useConversations from "./contexts/useConversations";
 import NotifierEmulator from "./components/Emulators/NotifierEmulator";
-=======
->>>>>>> 02b0968 (Add untracked files before rebase)
 
 
 
 
 function App() {
-  // const data = [
-  //   { "_id": "667bdbd702bcd2adf29e850e", "type": TYPE_SUIVIS.fixe, "step": "J+5", "protocole": "Protocole exemple", "phone": "0698765432", "referenceDate": new Date("06/24/2024 07:00:00"), "state": STATE.active, "operationNumber": 3297, "lastname": "Doe", "firstname": "John", "birthdate": new Date("02/01/1996"), "medic": "Dr. Mundo", "sms": [], "calls": [{ "id": "1", "title": "Notification opération J+1", "date": new Date("06/24/2024 07:00:00"), "messages": ["Notification de l'Hoptital de Paris. Vous avez un rendez vous demain à 14h. Merci de venir a jeun."] }], "status": STATUS.jaune },
-  //   { "_id": "667bdbd702bcd2adf29e8501", "type": TYPE_SUIVIS.fixe, "step": "J+1", "protocole": "Protocole exemple", "phone": "0345678976", "referenceDate": new Date("06/24/2024 07:00:00"), "state": STATE.active, "operationNumber": 3297, "lastname": "Doe", "firstname": "John", "birthdate": new Date("02/01/1996"), "medic": "Dr. Mundo", "sms": [], "calls": [{ "id": "1", "title": "Notification opération J-1", "date": new Date("06/24/2024 07:00:00"), "messages": ["Notification de l'Hoptital de Paris. Vous avez un rendez vous demain à 14h. Merci de venir a jeun."] }], "status": STATUS.gris }
-  // ];
-  const conversation = useModel(MODELS.conversation);
+  const conversation = useConversations();
   const [data, setData] = useState<Conversation[]>([]);
   useEffect(() => {
-    conversation.list().then((data) => {
-      setData(data);
-    })
-  })
+    const interval = setInterval(async () => {
+      conversation.list().then((data) => {
+        setData(data);
+      })
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
   return (
     <>
       <header className="p-8">
@@ -53,27 +47,9 @@ function App() {
               <Button>Emuler</Button>
             </CardFooter>
           </Card>
-<<<<<<< HEAD
           <NotifierEmulator />
-=======
-          <Card>
-            <CardHeader>
-              <CardTitle>Emuler une notif. fixe</CardTitle>
-              <CardDescription>Simule un Text to Speech envoyé par appel téléphonique<br /> au patient de type "suivis fixe" (pas SMS)</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Data mock</p>
-            </CardContent>
-            <CardFooter>
-              <Button>Emuler</Button>
-            </CardFooter>
-          </Card>
->>>>>>> 02b0968 (Add untracked files before rebase)
         </div>
-
         <DataTable columns={columns} data={data} />
-
-        {/* <Datatable /> */}
       </main>
     </>
   )

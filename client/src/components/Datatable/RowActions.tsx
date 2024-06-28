@@ -21,15 +21,11 @@ export default function RowActions({ conversation }: { conversation: Conversatio
         <Icon.Chat />
       </li>
       <li>
-<<<<<<< HEAD
         <PhoneSheet
           conversationId={conversation._id}
           calls={conversation.calls ?? []}
           isNotified={conversation.newCall}
         />
-=======
-        <PhoneSheet calls={conversation.calls ?? []}/>
->>>>>>> 02b0968 (Add untracked files before rebase)
       </li>
       <li>
         <Icon.Download />
