@@ -10,7 +10,7 @@ export default function PhoneSheetCalls({ calls, setCall }: { calls: Calls, setC
     <ScrollArea className="h-48 rounded-md border mb-8">
       <div className="p-4">
         <h4 className="mb-4 text-sm font-medium leading-none">Appels</h4>
-        {calls.map((call) => (
+        {calls.length && calls.map((call) => (
           <div key={`calls-${call.id}`}>
             <div
               className="flex justify-between items-center p-2 rounded hover:cursor-pointer hover:bg-zinc-100"

@@ -15,7 +15,7 @@ export default function PhoneSheet({ calls }: { calls: Call[]}) {
   const [call, setCall] = useState<Call | null>(null);
   return (
     <Sheet>
-      <SheetTrigger>
+      <SheetTrigger className={`${!calls.length ? "cursor-not-allowed opacity-25" : ''}`}>
         <Icon.Phone />
       </SheetTrigger>
       <SheetContent>

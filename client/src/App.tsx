@@ -8,22 +8,31 @@ import {
   CardTitle,
 } from "./components/ui/card"
 
-import { STATE, STATUS, TYPE_SUIVIS, columns } from "./components/datatable-wip/columns"
+import { Conversation, STATE, STATUS, TYPE_SUIVIS, columns } from "./components/datatable-wip/columns"
 import { DataTable } from "./components/datatable-wip/data-table"
+import { useEffect, useState } from "react";
+import useModel, { MODELS } from "./contexts/useApi";
 
 
 
 
 function App() {
-  const data = [
-    { "_id": "667bdbd702bcd2adf29e850e", "type": TYPE_SUIVIS.fixe, "step": "J+5", "protocole": "Protocole exemple", "phone": "0698765432", "referenceDate": new Date("06/24/2024 07:00:00"), "state": STATE.active, "operationNumber": 3297, "lastname": "Doe", "firstname": "John", "birthdate": new Date("02/01/1996"), "medic": "Dr. Mundo", "sms": [], "calls": [{ "id": "1", "title": "Notification opération J+1", "date": new Date("06/24/2024 07:00:00"), "messages": ["Notification de l'Hoptital de Paris. Vous avez un rendez vous demain à 14h. Merci de venir a jeun."] }], "status": STATUS.jaune },
-    { "_id": "667bdbd702bcd2adf29e8501", "type": TYPE_SUIVIS.fixe, "step": "J+1", "protocole": "Protocole exemple", "phone": "0345678976", "referenceDate": new Date("06/24/2024 07:00:00"), "state": STATE.active, "operationNumber": 3297, "lastname": "Doe", "firstname": "John", "birthdate": new Date("02/01/1996"), "medic": "Dr. Mundo", "sms": [], "calls": [{ "id": "1", "title": "Notification opération J-1", "date": new Date("06/24/2024 07:00:00"), "messages": ["Notification de l'Hoptital de Paris. Vous avez un rendez vous demain à 14h. Merci de venir a jeun."] }], "status": STATUS.gris }
-  ];
+  // const data = [
+  //   { "_id": "667bdbd702bcd2adf29e850e", "type": TYPE_SUIVIS.fixe, "step": "J+5", "protocole": "Protocole exemple", "phone": "0698765432", "referenceDate": new Date("06/24/2024 07:00:00"), "state": STATE.active, "operationNumber": 3297, "lastname": "Doe", "firstname": "John", "birthdate": new Date("02/01/1996"), "medic": "Dr. Mundo", "sms": [], "calls": [{ "id": "1", "title": "Notification opération J+1", "date": new Date("06/24/2024 07:00:00"), "messages": ["Notification de l'Hoptital de Paris. Vous avez un rendez vous demain à 14h. Merci de venir a jeun."] }], "status": STATUS.jaune },
+  //   { "_id": "667bdbd702bcd2adf29e8501", "type": TYPE_SUIVIS.fixe, "step": "J+1", "protocole": "Protocole exemple", "phone": "0345678976", "referenceDate": new Date("06/24/2024 07:00:00"), "state": STATE.active, "operationNumber": 3297, "lastname": "Doe", "firstname": "John", "birthdate": new Date("02/01/1996"), "medic": "Dr. Mundo", "sms": [], "calls": [{ "id": "1", "title": "Notification opération J-1", "date": new Date("06/24/2024 07:00:00"), "messages": ["Notification de l'Hoptital de Paris. Vous avez un rendez vous demain à 14h. Merci de venir a jeun."] }], "status": STATUS.gris }
+  // ];
+  const conversation = useModel(MODELS.conversation);
+  const [data, setData] = useState<Conversation[]>([]);
+  useEffect(() => {
+    conversation.list().then((data) => {
+      setData(data);
+    })
+  })
   return (
     <>
-    <header className="p-8">
-      <img src="/calmedica-logo.png" alt="Calmedica" className="" />
-    </header>
+      <header className="p-8">
+        <img src="/calmedica-logo.png" alt="Calmedica" className="" />
+      </header>
       <main className="px-4">
         <div className="flex gap-4 mb-8">
           <Card>
