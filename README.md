@@ -18,6 +18,15 @@ Pour faire fonctionner l'appli, faire tourner toutes les apps en même temps
 `cd api`
 `npm install`
 `npm run dev`
+
+#### .env
+```
+DB_USERNAME=
+DB_PASSWORD=
+APP_PORT=
+DB_URI=
+```
+
 ### Backend Flask
 `cd server`
 `docker compose up -d`
